@@ -21,7 +21,7 @@
       width: 100vw;
       height: 100vh;
     }
-    /* Conectores con SVG */
+    /* Conectores con SVG para desktop */
     .connectors {
       position: absolute;
       top: 0;
@@ -47,78 +47,45 @@
     .node:hover {
       transform: scale(1.03);
     }
-    .node h2, .node h3, .node h4 {
-      margin-bottom: 5px;
-      text-align: center;
-    }
-    .node p, .node li {
-      font-size: 0.9em;
-      line-height: 1.3;
-    }
-    .node ul {
-      list-style: disc;
-      margin-left: 20px;
-    }
-    /* Nodo central (Tema) */
+    /* Nodo central */
     .central-node {
       background-color: #ff6600;
       color: #ffffff;
       width: 20%;
       text-align: center;
-      left: 40%;
-      top: 40%;
+      left: 50%;
+      top: 50%;
       transform: translate(-50%, -50%);
+      cursor: default;
+      user-select: none;
     }
-    /* Ramas (nodos secundarios) – 20% de ancho */
+    /* Estilo para los encabezados de nodos secundarios */
+    .node-header {
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+    }
+    /* Contenido de cada nodo (oculto por defecto) */
+    .node-content {
+      margin-top: 8px;
+      display: none;
+      font-size: 0.9em;
+      line-height: 1.3;
+    }
+    .node-content ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    /* Ramas (nodos secundarios) - 20% de ancho */
     .branch {
       width: 20%;
-      overflow-y: auto;
-      font-size: 0.85em;
     }
-    /* Posiciones de las ramas: */
+    /* Posiciones de ramas para desktop */
     .node1 { left: 5%; top: 5%; }
-    .node2 { left: 75%; top: 5%; }
-    .node3 { left: 5%; top: 70%; }
-    .node4 { left: 75%; top: 70%; }
-    /* Ícono de información y tooltip */
-    .info-icon {
-      display: inline-block;
-      background-color: #ff6600;
-      color: #ffffff;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      text-align: center;
-      line-height: 18px;
-      margin-left: 5px;
-      cursor: pointer;
-      position: relative;
-      font-weight: bold;
-      font-size: 0.8em;
-    }
-    .info-icon:hover + .tooltip,
-    .info-icon:focus + .tooltip {
-      opacity: 1;
-      visibility: visible;
-    }
-    .tooltip {
-      position: absolute;
-      top: 25px;
-      left: 0;
-      width: 200px;
-      background-color: #ffffff;
-      color: #000000;
-      border: 1px solid #000000;
-      padding: 5px;
-      border-radius: 4px;
-      font-size: 0.8em;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s;
-      z-index: 10;
-      box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    /* Sub-secciones dentro de nodo 3 y 4 */
+    .node2 { right: 5%; top: 5%; }
+    .node3 { left: 5%; bottom: 5%; }
+    .node4 { right: 5%; bottom: 5%; }
+    /* Sub-secciones dentro de nodos */
     .subsection {
       margin-top: 10px;
       padding-top: 5px;
@@ -132,11 +99,40 @@
       font-size: 0.8em;
       color: #000000;
     }
+    /* Media queries para dispositivos móviles y pantallas pequeñas */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+      }
+      .mindmap-container {
+        height: auto;
+        padding: 20px 0;
+      }
+      /* Ocultamos los conectores en mobile */
+      .connectors { display: none; }
+      /* Centramos el nodo central y lo hacemos relativo */
+      .central-node {
+        position: relative;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 90%;
+        margin-bottom: 20px;
+      }
+      /* Posicionamos los nodos secundarios en bloque */
+      .branch {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        margin-bottom: 10px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="mindmap-container">
-    <!-- Conectores SVG: se dibujan líneas desde el centro del nodo central a los centros aproximados de cada rama -->
+    <!-- Conectores SVG (solo para desktop) -->
     <svg class="connectors" viewBox="0 0 100 100" preserveAspectRatio="none">
       <line x1="50" y1="50" x2="15" y2="15" />
       <line x1="50" y1="50" x2="85" y2="15" />
@@ -144,88 +140,86 @@
       <line x1="50" y1="50" x2="85" y2="85" />
     </svg>
 
-    <!-- Nodo central -->
+    <!-- Nodo central (título principal) -->
     <div class="node central-node">
       <h2>Deontología y su<br>Aplicabilidad en la Comunicación Estratégica</h2>
     </div>
 
     <!-- Nodo 1: ¿Qué es la Deontología? -->
     <div class="node branch node1">
-      <h3>
-        ¿Qué es la Deontología?
-        <span class="info-icon" tabindex="0">?</span>
-        <div class="tooltip">
-          Dato curioso: Immanuel Kant fue pionero al plantear que los actos deben ser éticos por sí mismos, sin importar las consecuencias.
-        </div>
-      </h3>
-      <p>
-        Es el conjunto de normas éticas y principios que rigen el comportamiento profesional. En comunicación estratégica, define lo correcto e incorrecto al transmitir información. Proviene del griego <em>déon</em> (deber) y <em>logos</em> (estudio): “el estudio de los deberes”.
-      </p>
+      <div class="node-header">¿Qué es la Deontología?</div>
+      <div class="node-content">
+        <p>
+          Conjunto de normas éticas y principios que rigen el comportamiento profesional. En comunicación estratégica, define lo correcto e incorrecto al transmitir información. Proviene del griego <em>déon</em> (deber) y <em>logos</em> (estudio): “el estudio de los deberes”.
+        </p>
+        <p><em>Dato curioso:</em> Immanuel Kant fue pionero al plantear que los actos deben ser éticos por sí mismos, sin importar las consecuencias.</p>
+      </div>
     </div>
 
     <!-- Nodo 2: Principios Fundamentales -->
     <div class="node branch node2">
-      <h3>
-        Principios Fundamentales
-        <span class="info-icon" tabindex="0">?</span>
-        <div class="tooltip">
-          Dato curioso: En 1983, la UNESCO publicó un código internacional de ética para periodistas basado en estos principios.
-        </div>
-      </h3>
-      <ul>
-        <li><strong>Veracidad:</strong> No mentir ni manipular información.</li>
-        <li><strong>Transparencia:</strong> Ser claro y evitar engaños.</li>
-        <li><strong>Imparcialidad:</strong> No favorecer intereses personales o de terceros.</li>
-        <li><strong>Respeto:</strong> No perjudicar a otros con la comunicación.</li>
-        <li><strong>Responsabilidad Social:</strong> La información debe aportar a la sociedad.</li>
-      </ul>
+      <div class="node-header">Principios Fundamentales</div>
+      <div class="node-content">
+        <ul>
+          <li><strong>Veracidad:</strong> No mentir ni manipular información.</li>
+          <li><strong>Transparencia:</strong> Ser claro y evitar engaños.</li>
+          <li><strong>Imparcialidad:</strong> No favorecer intereses personales o de terceros.</li>
+          <li><strong>Respeto:</strong> Evitar perjudicar a otros.</li>
+          <li><strong>Responsabilidad Social:</strong> La información debe aportar a la sociedad.</li>
+        </ul>
+        <p><em>Dato curioso:</em> En 1983, la UNESCO publicó un código internacional de ética para periodistas basado en estos principios.</p>
+      </div>
     </div>
 
     <!-- Nodo 3: Aplicabilidad en la Comunicación Estratégica -->
     <div class="node branch node3">
-      <h3>Aplicabilidad en la Comunicación Estratégica</h3>
-      <div class="subsection">
-        <h4>Publicidad y Marketing</h4>
-        <ul>
-          <li><strong>Ética en la publicidad:</strong> No engañar al consumidor.</li>
-          <li><strong>Publicidad responsable:</strong> Evitar promover valores negativos.</li>
-          <li><strong>Ejemplo:</strong> Dove y su campaña "Belleza Real".</li>
-        </ul>
-      </div>
-      <div class="subsection">
-        <h4>Medios de Comunicación</h4>
-        <ul>
-          <li><strong>Periodismo ético:</strong> Confirmar fuentes antes de publicar.</li>
-          <li><strong>Ejemplo:</strong> The Guardian rechazó publicar noticias falsas en 2018.</li>
-        </ul>
-      </div>
-      <div class="subsection">
-        <h4>Redes Sociales</h4>
-        <ul>
-          <li><strong>Evitar Fake News:</strong> Verificar la información antes de compartir.</li>
-          <li><strong>Ejemplo negativo:</strong> Desinformación sobre el COVID-19 en 2020.</li>
-          <li><strong>Ejemplo positivo:</strong> BBC Reality Check desmiente noticias falsas.</li>
-        </ul>
-      </div>
-      <div class="subsection">
-        <h4>Manejo de Crisis de Imagen</h4>
-        <ul>
-          <li><strong>Respuesta ética:</strong> Transparencia en momentos de crisis.</li>
-          <li><strong>Ejemplo:</strong> Southwest Airlines asumió responsabilidad en 2019.</li>
-        </ul>
+      <div class="node-header">Aplicabilidad en la Comunicación Estratégica</div>
+      <div class="node-content">
+        <div class="subsection">
+          <h4>Publicidad y Marketing</h4>
+          <ul>
+            <li><strong>Ética en la publicidad:</strong> No engañar al consumidor.</li>
+            <li><strong>Publicidad responsable:</strong> Evitar promover valores negativos.</li>
+            <li><strong>Ejemplo:</strong> Dove y su campaña "Belleza Real".</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <h4>Medios de Comunicación</h4>
+          <ul>
+            <li><strong>Periodismo ético:</strong> Confirmar fuentes antes de publicar.</li>
+            <li><strong>Ejemplo:</strong> The Guardian rechazó publicar noticias falsas en 2018.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <h4>Redes Sociales</h4>
+          <ul>
+            <li><strong>Evitar Fake News:</strong> Verificar la información antes de compartir.</li>
+            <li><strong>Ejemplo negativo:</strong> Desinformación sobre el COVID-19 en 2020.</li>
+            <li><strong>Ejemplo positivo:</strong> BBC Reality Check desmiente noticias falsas.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <h4>Manejo de Crisis de Imagen</h4>
+          <ul>
+            <li><strong>Respuesta ética:</strong> Transparencia en momentos de crisis.</li>
+            <li><strong>Ejemplo:</strong> Southwest Airlines asumió responsabilidad en 2019.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- Nodo 4: Casos Reales -->
     <div class="node branch node4">
-      <h3>Casos Reales</h3>
-      <div class="subsection">
-        <h4>Caso Positivo</h4>
-        <p>Ben &amp; Jerry's ha sido reconocida por su compromiso con causas sociales sin recurrir a publicidad engañosa.</p>
-      </div>
-      <div class="subsection">
-        <h4>Caso Negativo</h4>
-        <p>Volkswagen y el “Dieselgate” (2015): Engaño sobre la contaminación, afectando la confianza de los consumidores.</p>
+      <div class="node-header">Casos Reales</div>
+      <div class="node-content">
+        <div class="subsection">
+          <h4>Caso Positivo</h4>
+          <p>Ben &amp; Jerry's ha sido reconocida por su compromiso con causas sociales sin recurrir a publicidad engañosa.</p>
+        </div>
+        <div class="subsection">
+          <h4>Caso Negativo</h4>
+          <p>Volkswagen y el “Dieselgate” (2015): Engaño sobre la contaminación, afectando la confianza de los consumidores.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -234,5 +228,16 @@
   <footer class="credit">
     Creado por Rodrigo Porres 19001048
   </footer>
+
+  <!-- JavaScript para alternar la visualización del contenido de cada nodo -->
+  <script>
+    document.querySelectorAll('.node.branch').forEach(node => {
+      const header = node.querySelector('.node-header');
+      const content = node.querySelector('.node-content');
+      header.addEventListener('click', () => {
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
