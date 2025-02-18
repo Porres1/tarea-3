@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa Mental - Deontología y Comunicación Estratégica</title>
+  <style>
+    /* Estilos Globales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(135deg, #74b9ff, #a29bfe);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    .mindmap-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    /* Estilos para los Nodos */
+    .node {
+      position: absolute;
+      background: #fff;
+      border: 2px solid #636e72;
+      border-radius: 15px;
+      padding: 15px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .node:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    /* Nodo Central */
+    .central-node {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background: #ffeaa7;
+      border-color: #fdcb6e;
+    }
+    /* Nodos Ramas */
+    .branch {
+      background: #dfe6e9;
+      border-color: #b2bec3;
+    }
+    /* Posicionamiento de las ramas */
+    .node1 {
+      top: 10%;
+      left: 10%;
+    }
+    .node2 {
+      top: 10%;
+      right: 10%;
+    }
+    .node3 {
+      bottom: 10%;
+      left: 10%;
+    }
+    .node4 {
+      bottom: 10%;
+      right: 10%;
+    }
+    /* Tooltip para información extra */
+    .tooltip {
+      display: block;
+      position: absolute;
+      background: #fff;
+      border: 1px solid #636e72;
+      padding: 10px;
+      border-radius: 10px;
+      width: 220px;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .node:hover .tooltip {
+      opacity: 1;
+    }
+    /* Estilos para subnodos dentro de ramas */
+    .subnode {
+      margin-top: 10px;
+      background: #f5f6fa;
+      border: 1px solid #b2bec3;
+      padding: 8px;
+      border-radius: 8px;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+    .subnode h4 {
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: #2d3436;
+    }
+    .subnode ul {
+      list-style: disc;
+      margin-left: 20px;
+      font-size: 14px;
+      color: #2d3436;
+    }
+    .subnode p {
+      font-size: 14px;
+      margin: 5px 0;
+      color: #2d3436;
+    }
+    /* Títulos y párrafos generales */
+    h2, h3 {
+      color: #2d3436;
+      margin-bottom: 10px;
+    }
+    p, li {
+      font-size: 14px;
+      color: #2d3436;
+      line-height: 1.4;
+    }
+    ul {
+      padding: 0;
+      list-style-position: inside;
+      text-align: left;
+    }
+    /* Créditos */
+    .credit {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      color: #fff;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="mindmap-container">
+    <!-- Nodo Central -->
+    <div class="node central-node">
+      <h2>Deontología y su Aplicabilidad en la Comunicación Estratégica</h2>
+    </div>
+
+    <!-- Nodo 1: ¿Qué es la Deontología? -->
+    <div class="node branch node1">
+      <h3>¿Qué es la Deontología?</h3>
+      <p>Conjunto de normas éticas y principios que rigen el comportamiento profesional, especialmente en la comunicación estratégica, definiendo lo correcto e incorrecto.</p>
+      <p>Proviene del griego <em>déon</em> (deber) y <em>logos</em> (estudio).</p>
+      <div class="tooltip">
+        <p><strong>Dato curioso:</strong> Immanuel Kant fue uno de los primeros en hablar de la deontología, planteando que los actos deben ser éticos por sí mismos, sin importar sus consecuencias.</p>
+      </div>
+    </div>
+
+    <!-- Nodo 2: Principios Fundamentales -->
+    <div class="node branch node2">
+      <h3>Principios Fundamentales</h3>
+      <ul>
+        <li><strong>Veracidad:</strong> No mentir ni manipular información.</li>
+        <li><strong>Transparencia:</strong> Ser claro y evitar engaños.</li>
+        <li><strong>Imparcialidad:</strong> No favorecer intereses personales.</li>
+        <li><strong>Respeto:</strong> Evitar perjudicar a otros.</li>
+        <li><strong>Responsabilidad Social:</strong> Contribuir positivamente a la sociedad.</li>
+      </ul>
+      <div class="tooltip">
+        <p><strong>Dato curioso:</strong> En 1983, la UNESCO publicó un código internacional de ética para periodistas basado en estos principios.</p>
+      </div>
+    </div>
+
+    <!-- Nodo 3: Aplicabilidad en la Comunicación Estratégica -->
+    <div class="node branch node3">
+      <h3>Aplicabilidad en la Comunicación Estratégica</h3>
+      <div class="subnode">
+        <h4>Publicidad y Marketing</h4>
+        <ul>
+          <li>Ética en la publicidad: No engañar al consumidor.</li>
+          <li>Publicidad responsable: Evitar promover valores negativos.</li>
+          <li>Ejemplo: Dove y su campaña "Belleza Real".</li>
+        </ul>
+      </div>
+      <div class="subnode">
+        <h4>Medios de Comunicación</h4>
+        <ul>
+          <li>Periodismo ético: Confirmar fuentes antes de publicar.</li>
+          <li>Ejemplo: The Guardian evitó difundir noticias falsas.</li>
+        </ul>
+      </div>
+      <div class="subnode">
+        <h4>Redes Sociales</h4>
+        <ul>
+          <li>Evitar Fake News: Verificar la información antes de compartir.</li>
+          <li>Ejemplo negativo: Desinformación sobre el COVID-19 en 2020.</li>
+          <li>Ejemplo positivo: BBC Reality Check desmiente noticias falsas.</li>
+        </ul>
+      </div>
+      <div class="subnode">
+        <h4>Manejo de Crisis de Imagen</h4>
+        <ul>
+          <li>Responder con ética y transparencia ante crisis.</li>
+          <li>Ejemplo: Southwest Airlines asumió responsabilidad en 2019.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nodo 4: Casos Reales -->
+    <div class="node branch node4">
+      <h3>Casos Reales</h3>
+      <div class="subnode">
+        <h4>Caso Positivo</h4>
+        <p>Ben &amp; Jerry's es reconocida por su compromiso con causas sociales sin recurrir a publicidad engañosa.</p>
+      </div>
+      <div class="subnode">
+        <h4>Caso Negativo</h4>
+        <p>Volkswagen y el “Dieselgate” (2015): Engaño en los niveles de contaminación, afectando la confianza del consumidor.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Créditos -->
+  <footer class="credit">
+    <p>Creado por Rodrigo Porres 19001048</p>
+  </footer>
+</body>
+</html>
